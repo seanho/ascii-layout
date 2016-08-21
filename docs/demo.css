@@ -60,7 +60,7 @@ a {
   background-color: #34495e;
   border: 1px solid #465f78;
   border-radius: 3px;
-  font-family: Consolas, 'Lucida Console';
+  font-family: Consolas, "Lucida Console", "Liberation Mono", Menlo, Courier, monospace;
   font-size: 16px;
 
   outline-style: none;
