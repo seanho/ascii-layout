@@ -1,0 +1,23 @@
+{
+  "name": "ascii-layout",
+  "version": "1.0.0",
+  "description": "Generate simple layout in text",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seanho/ascii-layout.git"
+  },
+  "main": "ascii-layout.js",
+  "scripts": {
+    "dist": "browserify ascii-layout.js -t babelify --standalone AsciiLayout > dist/ascii-layout.js"
+  },
+  "author": "Sean Ho",
+  "license": "MIT",
+  "engines": {
+    "node": "~6.4.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.13.2",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0"
+  }
+}
