@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #2c3e50;
+  color: #969da6;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+a {
+  color: #969da6;
+}
+
+.editor {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.edit, .preview {
+  position: relative;
+  padding: 0 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.edit {
+  width: 45%;
+}
+
+.preview {
+  width: 55%;
+}
+
+.edit-input, .preview-input {
+  width: 100%;
+  padding: 1em;
+  flex-grow: 2;
+
+  background-color: #34495e;
+  border: 1px solid #465f78;
+  border-radius: 3px;
+  font-family: Consolas, 'Lucida Console';
+  font-size: 16px;
+
+  outline-style: none;
+  -webkit-appearance: none;
+}
+
+.edit-input {
+  color: white;
+}
+
+.preview-input {
+  color: #959ca5;
+}
+
+.example-list {
+  padding: 0;
+  margin: 1.5em 0;
+}
+
+.example-list li {
+  padding: 0 0 0.5em 0;
+  margin: 0 0 0 1.5em;
+}
+
+.copy-button:hover {
+  opacity: 0.7;
+}
+
+.copy-button {
+  position: absolute;
+  width: 80px;
+  height: 20px;
+  top: 18px;
+  left: 100px;
+
+  background-color: transparent;
+  border: 1px solid #1abc9c;
+  color: #1abc9c;
+  font-size: 12px;
+  border-radius: 2em;
+
+  outline-style: none;
+  -webkit-appearance: none;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ASCII Layout</title>
+    <script type="text/javascript" src="ascii-layout.js"></script>
+    <script type="text/javascript" src="demo.js"></script>
+    <link rel="stylesheet" type="text/css" href="demo.css">
+  </head>
+  <body>
+    <main class="editor">
+      <section class="edit">
+        <h2>Edit</h2>
+        <textarea class="edit-input" oninput="updatePreview(AsciiLayout(this.value, true))"></textarea>
+        <ul class="example-list">
+          <h3>Examples</h3>
+          <li><a href="javascript:showExample('view1-view2-view3')">Horizontal stack</a></li>
+          <li><a href="javascript:showExample('view1|view2|view3')">Vertical stack</a></li>
+          <li><a href="javascript:showExample('view1>view2')">Parent and child</a></li>
+          <li><a href="javascript:showExample('(view1|view2)-(view3|view4)')">Grouping 1</a></li>
+          <li><a href="javascript:showExample('view1|(view2-view3)|view4')">Grouping 2</a></li>
+          <li><a href="javascript:showExample('view1>(view2|view3)|(view4-view5)|(view6-view7)')">A little bit more complicated</a></li>
+        </ul>
+      </section>
+      <section class="preview">
+        <h2>Preview</h2>
+        <button class="copy-button" onclick="copy()">Copy</button>
+        <textarea class="preview-input"></textarea>
+      </section>
+    </main>
+  </body>
+</html>
