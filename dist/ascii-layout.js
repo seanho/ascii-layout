@@ -150,6 +150,7 @@ var VerticalBlock = function () {
 
 function parse(string, block) {
   var scoped = arguments.length <= 2 || arguments[2] === undefined ? false : arguments[2];
+  var root = arguments.length <= 3 || arguments[3] === undefined ? false : arguments[3];
 
   if (string.length == 0) return [block, string];
 
@@ -158,16 +159,23 @@ function parse(string, block) {
 
   switch (char) {
     case '(':
-      return parse(tail, new Block(), true);
-    case ')':
-      return [block, tail];
-    case '-':
-      var _parse = parse(tail, new Block(), scoped);
+      var _parse = parse(tail, new Block(), true);
 
       var _parse2 = _slicedToArray(_parse, 2);
 
-      var rightBlock = _parse2[0];
-      var rightTail = _parse2[1];
+      var groupBlock = _parse2[0];
+      var groupTail = _parse2[1];
+
+      return root ? parse(groupTail, groupBlock) : [groupBlock, groupTail];
+    case ')':
+      return [block, tail];
+    case '-':
+      var _parse3 = parse(tail, new Block(), scoped);
+
+      var _parse4 = _slicedToArray(_parse3, 2);
+
+      var rightBlock = _parse4[0];
+      var rightTail = _parse4[1];
 
       if (scoped) {
         return [new HorizontalBlock(block, rightBlock), rightTail];
@@ -175,12 +183,12 @@ function parse(string, block) {
         return parse(rightTail, new HorizontalBlock(block, rightBlock));
       }
     case '|':
-      var _parse3 = parse(tail, new Block(), scoped);
+      var _parse5 = parse(tail, new Block(), scoped);
 
-      var _parse4 = _slicedToArray(_parse3, 2);
+      var _parse6 = _slicedToArray(_parse5, 2);
 
-      var bottomBlock = _parse4[0];
-      var bottomTail = _parse4[1];
+      var bottomBlock = _parse6[0];
+      var bottomTail = _parse6[1];
 
       if (scoped) {
         return [new VerticalBlock(block, bottomBlock), bottomTail];
@@ -188,12 +196,12 @@ function parse(string, block) {
         return parse(bottomTail, new VerticalBlock(block, bottomBlock));
       }
     case '>':
-      var _parse5 = parse(tail, new Block(), scoped);
+      var _parse7 = parse(tail, new Block(), scoped);
 
-      var _parse6 = _slicedToArray(_parse5, 2);
+      var _parse8 = _slicedToArray(_parse7, 2);
 
-      var childBlock = _parse6[0];
-      var childTail = _parse6[1];
+      var childBlock = _parse8[0];
+      var childTail = _parse8[1];
 
       block.child = childBlock;
       return parse(childTail, block, scoped);
@@ -204,11 +212,12 @@ function parse(string, block) {
 }
 
 function print(string, asComment) {
-  var _parse7 = parse(string, new Block());
+  var _parse9 = parse(string, new Block(), false, true);
 
-  var _parse8 = _slicedToArray(_parse7, 1);
+  var _parse10 = _slicedToArray(_parse9, 2);
 
-  var block = _parse8[0];
+  var block = _parse10[0];
+  var tail = _parse10[1];
 
   var _block$estimatedSize = _slicedToArray(block.estimatedSize, 1);
 

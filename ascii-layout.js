@@ -90,7 +90,7 @@ class VerticalBlock {
   }
 }
 
-function parse(string, block, scoped = false) {
+function parse(string, block, scoped = false, root = false) {
   if (string.length == 0) return [block, string];
 
   let char = string.substring(0, 1);
@@ -98,7 +98,8 @@ function parse(string, block, scoped = false) {
 
   switch (char) {
     case '(':
-      return parse(tail, new Block(), true);
+      let [groupBlock, groupTail] = parse(tail, new Block(), true);
+      return root ? parse(groupTail, groupBlock) : [groupBlock, groupTail];
     case ')':
       return [block, tail];
     case '-':
@@ -126,7 +127,7 @@ function parse(string, block, scoped = false) {
 }
 
 function print(string, asComment) {
-  let [block,] = parse(string, new Block());
+  let [block, tail] = parse(string, new Block(), false, true);
   let [width,] = block.estimatedSize;
 
   if (asComment) {
